@@ -5,7 +5,7 @@ on:
   
 jobs:
   build:
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Init
         run: |
@@ -36,7 +36,7 @@ jobs:
           git clone --recursive https://github.com/obsproject/obs-studio.git -b 29.1.3
           cd obs-studio
           mkdir build && cd build
-          cmake -DLINUX_PORTABLE=ON -DCMAKE_INSTALL_PREFIX="${HOME}/obs-studio-portable" -DENABLE_BROWSER=ON -DCEF_ROOT_DIR="../../cef_binary_5060_linux_x86_64" -DENABLE_AJA=OFF ..
+          cmake -DLINUX_PORTABLE=ON -DCMAKE_INSTALL_PREFIX="${HOME}/obs-studio-portable" -DENABLE_BROWSER=ON -DCEF_ROOT_DIR="../../cef_binary_5060_linux_x86_64" -DENABLE_AJA=OFF -DENABLE_NEW_MPEGTS_OUTPUT=OFF ..
           make -j4 && make install
       - uses: actions/upload-artifact@v4
         with:
